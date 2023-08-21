@@ -46,3 +46,5 @@ Viel Spaß beim Ausprobieren!
 **_Font Awesome_**: Verwendet für die Symbole in der Benutzeroberfläche.
 
 **_jQuery_**: Verwendet für die Interaktivität der Benutzeroberfläche.
+
+**_Unsplash_**: Verwendet für die Produkt, login und register Bilder.
