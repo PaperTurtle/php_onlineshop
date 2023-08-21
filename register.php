@@ -3,8 +3,8 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-include 'templates/head.php';
-include 'templates/navbar.php';
+require_once 'templates/head.php';
+require_once 'templates/navbar.php';
 
 // Überprüfen, ob der Benutzer bereits angemeldet ist
 if (isset($_SESSION['username'])) {
@@ -18,7 +18,7 @@ if (!isset($_SESSION["csrf_token"])) {
     $_SESSION["csrf_token"] = bin2hex(random_bytes(32));
 }
 
-include 'templates/connect.php';
+require_once 'templates/connect.php';
 
 // Überprüfen, ob das Registrierungsformular abgesendet wurde
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['register'])) {
@@ -74,7 +74,7 @@ $conn->close();
 
 <main>
     <?php
-    include "templates/messageBlock.php";
+    require_once "templates/messageBlock.php";
     showMessageFromSession(type: "danger", icon: "exclamation-triangle-fill", sessionKey: "register_error");
     ?>
     <section class="vh-80" style="background-color: #eee; border-radius: 0.5rem;">
@@ -145,4 +145,4 @@ $conn->close();
     </section>
 </main>
 
-<?php include 'templates/footer.php'; ?>
+<?php require_once 'templates/footer.php'; ?>

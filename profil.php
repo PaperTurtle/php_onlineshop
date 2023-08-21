@@ -1,10 +1,10 @@
 <?php
 ob_start();
 session_start();
-include 'templates/head.php';
-include 'templates/navbar.php';
-include 'templates/connect.php';
-include 'templates/userData.php';
+require_once 'templates/head.php';
+require_once 'templates/navbar.php';
+require_once 'templates/connect.php';
+require_once 'templates/userData.php';
 
 // Überprüfen, ob der Benutzer bereits angemeldet ist
 if (!isset($_SESSION['benutzer_id'])) {
@@ -91,7 +91,7 @@ ob_end_flush();
 
 <main class="min-vh-100">
   <?php
-  include "templates/messageBlock.php";
+  require_once "templates/messageBlock.php";
   showMessageFromSession(type: "danger", icon: "exclamation-triangle-fill", sessionKey: "user_delete_error");
   showMessageFromSession(type: "danger", icon: "exclamation-triangle-fill", sessionKey: "invalid_csrf_token_message");
   ?>
@@ -240,6 +240,7 @@ ob_end_flush();
                                                   $produktName = $produkt['name'];
                                                   $gesamtPreis = number_format($menge * $einzelpreis, 2);
                                                   $preisAlleProdukte .= $gesamtPreis;
+                                                  $preisAlleProdukteFormatted = number_format($preisAlleProdukte + 10, 2, '.', '');
                                                   ?>
                                                   <div class="col-md-6 col-lg-6">
                                                     <p> <?= $produktName; ?></p>
@@ -264,7 +265,7 @@ ob_end_flush();
                                           </div>
                                           <div class="row my-4">
                                             <div class="col-md-4 offset-md-8 col-lg-3 offset-lg-9">
-                                              <p class="lead fw-bold mb-0 font-monospace" style="color: #332D2D;"><?= $preisAlleProdukte + 10 ?> €</p>
+                                              <p class="lead fw-bold mb-0 font-monospace" style="color: #332D2D;"><?= $preisAlleProdukteFormatted ?> €</p>
                                             </div>
                                           </div>
                                         </div>
@@ -374,4 +375,4 @@ ob_end_flush();
     <?php unset($_SESSION["user_restricted_delete"]); ?>
   <?php } ?>
 </script>
-<?php include 'templates/footer.php'; ?>
+<?php require_once 'templates/footer.php'; ?>

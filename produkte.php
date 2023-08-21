@@ -1,7 +1,7 @@
 <?php
 session_start();
-include 'templates/head.php';
-include 'templates/navbar.php';
+require_once 'templates/head.php';
+require_once 'templates/navbar.php';
 
 /**
  * Erstellt eine Bootstrap-Karte für ein Produkt und gibt sie als HTML-Code zurück
@@ -118,17 +118,14 @@ $index = 0;
 </main>
 <script>
     $(document).ready(function() {
-        // Get all elements with the card-fade class
-        var cards = $(".card-fade");
-
-        // Loop through each card and fade them in one by one
+        let cards = $(".card-fade");
         cards.each(function(index) {
-            var card = $(this);
+            let card = $(this);
             setTimeout(function() {
                 card.fadeIn("slow");
-            }, 30 * index); // Adjust the delay time as needed
+            }, 30 * index);
         });
     });
 </script>
 
-<?php include 'templates/footer.php'; ?>
+<?php require_once 'templates/footer.php'; ?>

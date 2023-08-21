@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-include 'templates/head.php';
-include 'templates/navbar.php';
+require_once 'templates/head.php';
+require_once 'templates/navbar.php';
 
 /**
  * Weiterleitung mit Fehlermeldung
@@ -114,7 +114,7 @@ if (isset($_POST["reset-password-submit"])) {
 ?>
 <main>
     <?php
-    include "templates/messageBlock.php";
+    require_once "templates/messageBlock.php";
     showMessageFromSession(type: "danger", icon: "exclamation-triangle-fill",  sessionKey: "reset_password_error");
     ?>
     <section class="vh-80 p-3" style="background-color: #eee; border-radius: 0.5rem;">
@@ -162,4 +162,4 @@ if (isset($_POST["reset-password-submit"])) {
     </section>
 </main>
 
-<?php include 'templates/footer.php'; ?>
+<?php require_once 'templates/footer.php'; ?>

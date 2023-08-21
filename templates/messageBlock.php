@@ -31,7 +31,7 @@ function generateMessageBlock(string $type, string $icon, string $message): void
  * @param string $sessionKey Key der Session (optional)
  * @param string $message Meldung (optional)
  * 
- * @return void
+ * @return void 
  */
 function showMessageFromSession(string $type, string $icon, ?string $sessionKey = null, ?string $message = null): void
 {

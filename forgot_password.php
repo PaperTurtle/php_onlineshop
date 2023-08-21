@@ -4,9 +4,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 session_start();
-include 'templates/head.php';
-include 'templates/navbar.php';
-include 'templates/connect.php';
+require_once 'templates/head.php';
+require_once 'templates/navbar.php';
+require_once 'templates/connect.php';
 
 if (isset($_SESSION['username'])) {
     header("Location: index.php");
@@ -177,4 +177,4 @@ if (isset($_POST['send_reset_email'])) {
         </div>
     </section>
 </main>
-<?php include 'templates/footer.php'; ?>
+<?php require_once 'templates/footer.php'; ?>

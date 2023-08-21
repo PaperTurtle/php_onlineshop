@@ -1,13 +1,13 @@
 <?php
 session_set_cookie_params([
 	'lifetime' => 0,
-	'samesite' => 'Lax', // Adjust this based on your needs
+	'samesite' => 'strict',
 	'httponly' => true,
 	'secure' => true,
 ]);
 session_start();
-include 'templates/connect.php';
-include "templates/userData.php";
+require_once 'templates/connect.php';
+require_once "templates/userData.php";
 getFullUserData();
 ?>
 <!DOCTYPE html>
@@ -30,7 +30,7 @@ getFullUserData();
 
 	<!-- Font Awesome CSS and Custom Styles -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-	<link rel="stylesheet" type="text/css" href="./css/button.css" />
+	<link rel="stylesheet" href="./css/button.css" />
 	<link rel="stylesheet" href="./css/home.css" />
 	<link rel="stylesheet" href="./css/flash.css">
 	<link rel="stylesheet" href="./css/mdb.min.css" />
@@ -38,7 +38,7 @@ getFullUserData();
 
 <body class="d-flex text-center text-dark bg-image">
 	<?php
-	include "templates/messageBlock.php";
+	require_once "templates/messageBlock.php";
 	showMessageFromSession(type: "success", icon: "check-circle-fill", sessionKey: "user_delete_success");
 	showMessageFromSession(type: "success", icon: "check-circle-fill", sessionKey: "success_logout");
 	showMessageFromSession(type: "success", icon: "check-circle-fill", sessionKey: "error_logout");

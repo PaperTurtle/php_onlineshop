@@ -1,8 +1,8 @@
 <?php
 ob_start();
 session_start();
-include 'templates/head.php';
-include 'templates/navbar.php';
+require_once 'templates/head.php';
+require_once 'templates/navbar.php';
 
 // Überprüfen, ob der Benutzer bereits angemeldet ist
 if (isset($_SESSION['username'])) {
@@ -25,7 +25,7 @@ if (!isset($_SESSION["csrf_token"])) {
 
 // Überprüfen, ob das Formular abgeschickt wurde (Login-Button geklickt?)
 if (isset($_POST['login'])) {
-    include 'templates/connect.php';
+    require_once 'templates/connect.php';
 
     // Benutzername und Passwort aus dem Formular auslesen
     $username = filter_var($_POST['username'], FILTER_UNSAFE_RAW);
@@ -79,7 +79,7 @@ ob_end_flush();
 ?>
 <main class="vh-90">
     <?php
-    include "templates/messageBlock.php";
+    require_once "templates/messageBlock.php";
     showMessageFromSession(type: "success", icon: "check-circle-fill", sessionKey: "registration_success");
     showMessageFromSession(type: "success", icon: "check-circle-fill", sessionKey: "password_reset", message: "Ihr Passwort wurde erfolgreich zurückgesetzt!");
     showMessageFromSession(type: "success", icon: "check-circle-fill", sessionKey: "success_forgot_password");
@@ -125,7 +125,7 @@ ob_end_flush();
                                         <a class="small text-muted" href="forgot_password.php">Passwort vergessen?</a>
                                         <div class="d-flex align-items-center justify-content-center pb-4">
                                             <p class="mb-0 me-2">Noch kein Profil?</p>
-                                            <button type="button" class="btn btn-outline-dark" onclick="window.location.href='register.php';">Registriere dich</button>
+                                            <a href="register.php" class="btn btn-outline-dark">Registriere dich</a>
                                         </div>
                                     </form>
                                 </div>
@@ -138,4 +138,4 @@ ob_end_flush();
     </section>
 </main>
 
-<?php include 'templates/footer.php'; ?>
+<?php require_once 'templates/footer.php'; ?>

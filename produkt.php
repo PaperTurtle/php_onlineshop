@@ -1,8 +1,8 @@
 <?php
 ob_start();
 session_start();
-include 'templates/head.php';
-include 'templates/navbar.php';
+require_once 'templates/head.php';
+require_once 'templates/navbar.php';
 
 // Überprüfen, ob der Benutzer bereits angemeldet ist
 if (!isset($_SESSION['benutzer_id'])) {
@@ -77,7 +77,7 @@ ob_end_flush();
 <main class="d-flex justify-content-center" style="background-color: #eee; border-radius: 0.5rem;">
     <div class="card mt-4 mb-4" style="width: 18rem;" id="productContainer">
         <?php
-        include "templates/messageBlock.php";
+        require_once "templates/messageBlock.php";
         if (isset($_SESSION['quantity_error'])) { ?>
             <div class='alert alert-danger alert-dismissible fade show' role='alert'>
                 <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Alert:'>
@@ -132,4 +132,4 @@ ob_end_flush();
         </script>
     <?php endif; ?>
 </main>
-<?php include 'templates/footer.php'; ?>
+<?php require_once 'templates/footer.php'; ?>

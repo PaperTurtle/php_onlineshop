@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'templates/connect.php';
+require_once 'templates/connect.php';
 
 $benutzer_id = $_SESSION['benutzer_id'];
 

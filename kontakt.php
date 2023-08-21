@@ -4,15 +4,15 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 session_start();
-include 'templates/head.php';
-include 'templates/navbar.php';
-include 'templates/userData.php';
+require_once 'templates/head.php';
+require_once 'templates/navbar.php';
+require_once 'templates/userData.php';
 getFullUserData();
 ?>
 
 <main class="vh-50">
     <?php
-    include "templates/messageBlock.php";
+    require_once "templates/messageBlock.php";
     // Beispielcode zum Verarbeiten des Kontaktformulars
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $name = $_POST['name'] ?? $fullName;
@@ -126,4 +126,4 @@ getFullUserData();
     </section>
 </main>
 
-<?php include 'templates/footer.php'; ?>
+<?php require_once 'templates/footer.php'; ?>

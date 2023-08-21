@@ -1,10 +1,10 @@
 <?php
 ob_start();
 session_start();
-include 'templates/head.php';
-include 'templates/navbar.php';
-include 'templates/connect.php';
-include "templates/userData.php";
+require_once 'templates/head.php';
+require_once 'templates/navbar.php';
+require_once 'templates/connect.php';
+require_once "templates/userData.php";
 /*-----------------------------------------------------------*/
 
 /**
@@ -103,13 +103,13 @@ if (isset($_GET['remove']) && isset($_SESSION['warenkorb'][$_GET['remove']])) {
     removeFromCart(conn: $conn, userId: $_SESSION['benutzer_id'], productId: $produkt_id);
 }
 
-$total_preis = 0;
+$total_preis = 0.00;
 $index = 0;
 ob_end_flush();
 ?>
 <main class="min-vh-100">
     <?php
-    include "templates/messageBlock.php";
+    require_once "templates/messageBlock.php";
     showMessageFromSession(type: "success", icon: "check-circle-fill", sessionKey: "bestellung_status");
     showMessageFromSession(type: "danger",  icon: "exclamation-triangle-fill", sessionKey: "bestellung_error");
     showMessageFromSession(type: "warning",  icon: "exclamation-triangle-fill", sessionKey: "warenkorb_leer");
@@ -140,7 +140,7 @@ ob_end_flush();
                                             $row = $result->fetch_assoc();
                                             $name = $row['name'];
                                             $preis = $row['preis'];
-                                            $gesamtpreis = $preis * $menge;
+                                            $gesamtpreis = number_format($preis * $menge, 2, '.', '');
                                             $bild = $row['bild'];
                                         }
                                         $total_preis += $gesamtpreis;
@@ -161,9 +161,9 @@ ob_end_flush();
                                                         <div style="width: 80px;">
                                                             <h5 class="mb-0 font-monospace"><?= $gesamtpreis; ?>€</h5>
                                                         </div>
-                                                        <button onclick="window.location.href='warenkorb.php?remove=<?= $produkt_id; ?>';" class="btn btn-danger btn-floating m-1 delete-button">
+                                                        <a href="warenkorb.php?remove=<?= $produkt_id; ?>" class="btn btn-danger btn-floating m-1 delete-button">
                                                             <i class="fas fa-trash-alt"></i>
-                                                        </button>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -188,7 +188,7 @@ ob_end_flush();
                                                 <hr class="my-4">
                                                 <div class="d-flex justify-content-between">
                                                     <p class="mb-2">Zwischensumme</p>
-                                                    <p class="mb-2 font-monospace"><?= $total_preis; ?> €</p>
+                                                    <p class="mb-2 font-monospace"><?= number_format($total_preis, 2, '.', ''); ?> €</p>
                                                 </div>
                                                 <div class="d-flex justify-content-between">
                                                     <p class="mb-2">Shipping</p>
@@ -196,14 +196,14 @@ ob_end_flush();
                                                 </div>
                                                 <div class="d-flex justify-content-between mb-4">
                                                     <p class="mb-2">Gesamtpreis</p>
-                                                    <p class="mb-2 font-monospace"><?= $total_preis + 10.00; ?> €</p>
+                                                    <p class="mb-2 font-monospace"><?= number_format($total_preis + 10.00, 2, '.', ''); ?> €</p>
                                                 </div>
-                                                <button type="button" class="btn btn-info btn-block btn-lg" onclick="window.location.href='bestellung_abschliessen.php'">
+                                                <a href="bestellung_abschliessen.php" class="btn btn-info btn-block btn-lg">
                                                     <div class="d-flex justify-content-between">
-                                                        <span class="font-monospace"><?= $total_preis + 10.00; ?> €</span>
+                                                        <span class="font-monospace"><?= number_format($total_preis + 10.00, 2, '.', ''); ?> €</span>
                                                         <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                                                     </div>
-                                                </button>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -218,20 +218,46 @@ ob_end_flush();
 </main>
 <script>
     $(document).ready(function() {
+        // Add fade in effect for the shopping cart
         $('#shoppingCartContainer, #bestellungDetails').fadeIn(1000);
-    });
-    $(document).ready(function() {
-        var cards = $(".card-fade");
+        // Add fade in effect for cards
+        let cards = $(".card-fade");
 
         cards.each(function(index) {
-            var card = $(this);
+            let card = $(this);
+            setTimeout(function() {
+                card.fadeIn("slow");
+            }, 50 * index);
+        });
+
+        // Add transition effect for delete buttons
+        let deleteButtons = $(".delete-button");
+
+        // Add hover effect
+        deleteButtons.hover(function() {
+            $(this).css({
+                transform: 'translateY(-3px)',
+                transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+            });
+        }, function() {
+            $(this).css({
+                transform: 'translateY(0)',
+                transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+            });
+        });
+    });
+    $(document).ready(function() {
+        let cards = $(".card-fade");
+
+        cards.each(function(index) {
+            let card = $(this);
             setTimeout(function() {
                 card.fadeIn("slow");
             }, 50 * index);
         });
     });
     $(document).ready(function() {
-        var deleteButtons = $(".delete-button");
+        let deleteButtons = $(".delete-button");
 
         // Add hover effect
         deleteButtons.hover(function() {
@@ -249,5 +275,5 @@ ob_end_flush();
 </script>
 <?php
 $conn->close();
-include 'templates/footer.php';
+require_once 'templates/footer.php';
 ?>
