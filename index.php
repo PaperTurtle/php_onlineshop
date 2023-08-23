@@ -9,6 +9,18 @@ session_start();
 require_once 'templates/connect.php';
 require_once "templates/userData.php";
 getFullUserData();
+
+if (isset($_SESSION["username"])) {
+	$countQuery = "SELECT COUNT(DISTINCT produkt_id) FROM warenkorb WHERE benutzer_id = {$_SESSION["benutzer_id"]}";
+	$countResult = $conn->query($countQuery);
+	$totalMenge = ($countResult->num_rows > 0) ? $countResult->fetch_row()[0] : 0;
+} else {
+	$totalMenge = 0;
+}
+$badgeHTML = '';
+if ($totalMenge > 0) {
+	$badgeHTML = '<span class="badge rounded-pill badge-notification bg-danger">' . $totalMenge . '</span>';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +53,7 @@ getFullUserData();
 	require_once "templates/messageBlock.php";
 	showMessageFromSession(type: "success", icon: "check-circle-fill", sessionKey: "user_delete_success");
 	showMessageFromSession(type: "success", icon: "check-circle-fill", sessionKey: "success_logout");
-	showMessageFromSession(type: "success", icon: "check-circle-fill", sessionKey: "error_logout");
+	showMessageFromSession(type: "warning", icon: "exclamation-triangle-fill", sessionKey: "error_logout");
 	showMessageFromSession(type: "warning", icon: "exclamation-triangle-fill", sessionKey: "already_logged_in");
 	?>
 	<div id="main-content" class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
@@ -65,13 +77,15 @@ getFullUserData();
 						$navItems[] = ['text' => 'Registrieren', 'link' => 'register.php', 'icon' => 'fa-marker'];
 					}
 					foreach ($navItems as $item) {
-						$activeClass = (basename($_SERVER['PHP_SELF']) == $item['link']) ? 'active fw-bold' : ''; ?>
+						$activeClass = (basename($_SERVER['PHP_SELF']) == $item['link']) ? 'active fw-bold' : '';
+						echo '
 						<li class="nav-item">
-							<a class="nav-link <?= $activeClass ?>" href="<?= $item['link'] ?>">
-								<?= $item['text'] ?> <i class="fa-solid <?= $item['icon'] ?>"></i>
+							<a class="nav-link ' . $activeClass . '" href="' . $item['link'] . '">' . $item['text'] . ' 
+								<i class="fa-solid ' . $item['icon'] . '"></i>' . ($item['text'] === 'Warenkorb' ? $badgeHTML : '') . '
 							</a>
-						</li>
-					<?php } ?>
+						</li>';
+					}
+					?>
 				</ul>
 			</nav>
 		</header>
