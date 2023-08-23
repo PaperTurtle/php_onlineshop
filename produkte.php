@@ -21,7 +21,7 @@ function createProductCard(array $row, int $index): string
                     <p class="text-muted fw-light fs-6">' . $row["kategorie"] . '</p>
                     <p class="card-text fst-italic">' . $row["beschreibung"] . '</p>
                     <p class="card-text font-monospace">' . $row["preis"] . ' € pro Packung</p>
-                    <a href="produkt.php?id=' . $row["produkt_id"] . '&add_to_cart=true" class="btn btn-success">Details <i class="fa-solid fa-angles-right"></i></a>
+                    <a href="produkt.php?id=' . $row["produkt_id"] . '" class="btn btn-success">Details <i class="fa-solid fa-angles-right"></i></a>
                 </div>
             </div>
         </div>
