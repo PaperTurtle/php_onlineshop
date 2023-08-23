@@ -75,7 +75,9 @@ function removeFromCart(mysqli $conn, int $userId, int $productId): void
     $stmt->close();
     // Produkt aus dem Warenkorb entfernen
     unset($_SESSION['warenkorb'][$productId]);
+    header("Location: warenkorb.php");
 }
+
 if (!isset($_SESSION['benutzer_id'])) {
     $_SESSION["not_logged_in"] = true;
     $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
@@ -100,7 +102,9 @@ if (isset($_POST['produkt_id']) && isset($_POST['menge'])) {
 // Produkt aus dem Warenkorb entfernen
 if (isset($_GET['remove']) && isset($_SESSION['warenkorb'][$_GET['remove']])) {
     $produkt_id = $_GET['remove'];
-    removeFromCart(conn: $conn, userId: $_SESSION['benutzer_id'], productId: $produkt_id);
+    if (isset($_SESSION['warenkorb'][$produkt_id])) {
+        removeFromCart(conn: $conn, userId: $_SESSION['benutzer_id'], productId: $produkt_id);
+    }
 }
 
 $total_preis = 0.00;
@@ -150,7 +154,9 @@ ob_end_flush();
                                                 <div class="d-flex justify-content-between">
                                                     <div class="d-flex flex-row align-items-center">
                                                         <div>
-                                                            <img src="data:image/jpeg;base64,<?= base64_encode($bild); ?>" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                            <a class="ripple" href=" produkt.php?id=<?= $produkt_id ?>">
+                                                                <img src="data:image/jpeg;base64,<?= base64_encode($bild); ?>" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                            </a>
                                                         </div>
                                                         <div class="ms-3">
                                                             <h5><?= $name; ?></h5>
@@ -218,9 +224,7 @@ ob_end_flush();
 </main>
 <script>
     $(document).ready(function() {
-        // Add fade in effect for the shopping cart
         $('#shoppingCartContainer, #bestellungDetails').fadeIn(1000);
-        // Add fade in effect for cards
         let cards = $(".card-fade");
 
         cards.each(function(index) {
@@ -229,34 +233,6 @@ ob_end_flush();
                 card.fadeIn("slow");
             }, 50 * index);
         });
-
-        // Add transition effect for delete buttons
-        let deleteButtons = $(".delete-button");
-
-        // Add hover effect
-        deleteButtons.hover(function() {
-            $(this).css({
-                transform: 'translateY(-3px)',
-                transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
-            });
-        }, function() {
-            $(this).css({
-                transform: 'translateY(0)',
-                transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
-            });
-        });
-    });
-    $(document).ready(function() {
-        let cards = $(".card-fade");
-
-        cards.each(function(index) {
-            let card = $(this);
-            setTimeout(function() {
-                card.fadeIn("slow");
-            }, 50 * index);
-        });
-    });
-    $(document).ready(function() {
         let deleteButtons = $(".delete-button");
 
         // Add hover effect
