@@ -1,6 +1,6 @@
 # Beispielwebseite: Onlineshop mit PHP und SQL
 
-Diese Webseite ist ein Beispiel für einen Onlineshop mit PHP und SQL. Sie wurde im Rahmen des Exkurses 'Webprogrammierung' am Gymnasium Lily-Braun-Schule in Berlin erstellt.
+Diese Webseite ist ein Beispiel für einen Onlineshop mit PHP und SQL. Sie wurde im Rahmen des Exkurses 'Webprogrammierung' am [Lily-Braun-Gymnasium](https://www.lily-braun-gymnasium.de/) in Berlin erstellt.
 
 ## Schritte zur Einrichtung
 
