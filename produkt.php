@@ -74,35 +74,36 @@ if (isset($_GET["id"]) && ctype_digit($_GET["id"])) {
 }
 ob_end_flush();
 ?>
-<main class="d-flex justify-content-center" style="background-color: #eee; border-radius: 0.5rem;">
-    <div class="card mt-4 mb-4" style="width: 18rem;" id="productContainer">
-        <?php
-        require_once "templates/messageBlock.php";
-        if (isset($_SESSION['quantity_error'])) { ?>
-            <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Alert:'>
-                    <use xlink:href='#exclamation-triangle-fill' />
-                </svg>
-                <?= $_SESSION['quantity_error'] ?>
-                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+<main class="mt-10 mb-10 pt-4">
+    <?php
+    require_once "templates/messageBlock.php";
+    showMessageFromSession(type: "danger", icon: "exclamation-circle-fill", sessionKey: "quantity_error");
+    ?>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 mb-4 text-center">
+                <img src="data:image/jpeg;base64,<?= base64_encode($row['bild']); ?>" class="img-fluid" style="height: 330px; width: 330px;" alt="<?= $row["name"]; ?>">
             </div>
-        <?php
-            unset($_SESSION['quantity_error']);
-        } ?>
-        <img src="data:image/jpeg;base64,<?= base64_encode($row['bild']); ?>" class="card-img-top mx-auto" style="height: 220px; width: 220px;" alt="<?= $row["name"]; ?>">
-        <div class="card-body">
-            <h5 class="card-title"><?= $row["name"]; ?></h5>
-            <p class="card-text fst-italic"><?= $row["beschreibung"]; ?></p>
-            <p class="card-text font-monospace">Preis: <?= $row["preis"]; ?> €</p>
-            <form action="produkt.php?id=<?= $produkt_id; ?>" method="post">
-                <div class="mb-3 form-outline">
-                    <input type="number" name="menge" value="1" min="1" class="form-control">
-                    <label for="menge" class="form-label">Menge:</label>
+            <div class="col-md-6 mb-4">
+                <div class="p-4">
+                    <h1><?= $row["name"]; ?></h1>
+                    <div class="mb-3">
+                        <a><span class="badge bg-primary me-1"><?= $row["kategorie"]; ?></span></a>
+                    </div>
+                    <p class="lead mb-4 font-monospace"><span><?= $row["preis"]; ?> €</span></p>
+                    <p class="mb-7"><?= $row["beschreibung"]; ?></p>
+                    <form class="d-flex justify-content-left" action="produkt.php?id=<?= $produkt_id; ?>" method="post">
+                        <div class="form-outline me-1" style="width: 100px;">
+                            <input type="number" name="menge" value="1" min="1" class="form-control">
+                            <label for="menge" class="form-label">Menge:</label>
+                        </div>
+                        <button class="btn btn-primary ms-1" type="submit" data-bs-toggle="modal" data-bs-target="#modalWindow">
+                            Zum Warenkorb hinzufügen
+                            <i class="fas fa-shopping-cart ms-1"></i>
+                        </button>
+                    </form>
                 </div>
-                <div class="text-center mx-auto">
-                    <button type="submit" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalWindow">Zum Warenkorb hinzufügen <i class="fa-solid fa-plus"></i></button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
     <?php if (isset($_GET['added']) && $_GET['added'] === 'true') : ?>
@@ -111,7 +112,6 @@ ob_end_flush();
                 <div class="modal-content">
                     <div class="modal-header bg-success text-white">
                         <h5 class="modal-title" id="modalWindowLabel">Artikel hinzugefügt!</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <p><?= $row["name"] ?> wurde(n) deinem Warenkorb hinzugefügt</p>
@@ -124,7 +124,6 @@ ob_end_flush();
             </div>
         </div>
         <script>
-            // Modal-Fenster anzeigen
             window.addEventListener('DOMContentLoaded', () => {
                 var modal = new bootstrap.Modal(document.getElementById('modalWindow'));
                 modal.show();
