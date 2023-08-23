@@ -1,3 +1,18 @@
+<?php
+require_once 'templates/connect.php';
+
+if (isset($_SESSION["username"])) {
+    $countQuery = "SELECT COUNT(DISTINCT produkt_id) FROM warenkorb WHERE benutzer_id = {$_SESSION["benutzer_id"]}";
+    $countResult = $conn->query($countQuery);
+    $totalMenge = ($countResult->num_rows > 0) ? $countResult->fetch_row()[0] : 0;
+} else {
+    $totalMenge = 0;
+}
+$badgeHTML = '';
+if ($totalMenge > 0) {
+    $badgeHTML = '<span class="badge rounded-pill badge-notification bg-danger">' . $totalMenge . '</span>';
+}
+?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
         <a class="navbar-brand" href="#"><img src="./img/lebensmittel.png" width="80px" height="80px" alt="LebensmittelShop-Logo"></a>
@@ -26,7 +41,8 @@
                     $activeClass = (basename($_SERVER['PHP_SELF']) == $item['link']) ? 'active fw-bold' : '';
                     echo '
                     <li class="nav-item">
-                        <a class="nav-link ' . $activeClass . '" href="' . $item['link'] . '">' . $item['text'] . ' <i class="fa-solid ' . $item['icon'] . '"></i>
+                        <a class="nav-link ' . $activeClass . '" href="' . $item['link'] . '">' . $item['text'] . ' 
+                            <i class="fa-solid ' . $item['icon'] . '"></i>' . ($item['text'] === 'Warenkorb' ? $badgeHTML : '') . '
                         </a>
                     </li>';
                 }
