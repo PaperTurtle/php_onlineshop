@@ -5,7 +5,6 @@ require_once 'templates/head.php';
 require_once 'templates/navbar.php';
 require_once 'templates/connect.php';
 require_once "templates/userData.php";
-/*-----------------------------------------------------------*/
 
 /**
  * Initialisiert den Warenkorb aus der Datenbank
@@ -130,7 +129,7 @@ ob_end_flush();
                                     <hr>
                                     <div class="d-flex justify-content-between align-items-center mb-4">
                                         <div>
-                                            <p class="mb-0">Du hast <?= count($_SESSION['warenkorb']); ?> Artikel in deinen Warenkorb</p>
+                                            <p class="mb-0">Du hast <?= count($_SESSION['warenkorb']); ?> Artikel in deinem Warenkorb</p>
                                         </div>
                                     </div>
                                     <?php
@@ -204,9 +203,9 @@ ob_end_flush();
                                                     <p class="mb-2">Gesamtpreis</p>
                                                     <p class="mb-2 font-monospace"><?= number_format($total_preis + 10.00, 2, '.', ''); ?> €</p>
                                                 </div>
-                                                <a href="bestellung_abschliessen.php" class="btn btn-info btn-block btn-lg">
+                                                <a href="bestellung_abschliessen.php" class="btn btn-light btn-block btn-lg">
                                                     <div class="d-flex justify-content-between">
-                                                        <span class="font-monospace"><?= number_format($total_preis + 10.00, 2, '.', ''); ?> €</span>
+                                                        <span class="font-monospace fw-bold"><?= number_format($total_preis + 10.00, 2, '.', ''); ?> €</span>
                                                         <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                                                     </div>
                                                 </a>
