@@ -12,8 +12,8 @@ getFullUserData();
 
 <main class="vh-50">
     <?php
+
     require_once "templates/messageBlock.php";
-    // Beispielcode zum Verarbeiten des Kontaktformulars
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $name = $_POST['name'] ?? $fullName;
         $email = $_POST['email'] ?? $email;
@@ -24,10 +24,8 @@ getFullUserData();
             require 'phpmailer/src/PHPMailer.php';
             require 'phpmailer/src/SMTP.php';
 
-            // Initialize PHPMailer
             $mail = new PHPMailer(true);
 
-            // SMTP configuration (You should adjust these settings)
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
@@ -41,7 +39,6 @@ getFullUserData();
             $mail->setFrom($email, $name);
             $mail->addAddress('geschmacksgarten@gmail.com', "Kundenemail");
 
-            // Email content
             $mail->isHTML(true);
             $mail->Subject = 'Neue Nachricht von ' . $name . ' über das Kontaktformular';
             $mail->Body = '
@@ -64,7 +61,6 @@ getFullUserData();
             </body>
             </html>';
 
-            // Send the email
             $mail->send();
             $_SESSION["successful_message"] = true;
             showMessageFromSession(type: "success", icon: "check-circle-fill", sessionKey: "successful_message", message: "Deine Nachricht wurde erfolgreich versendet!");
@@ -74,7 +70,6 @@ getFullUserData();
     }
     ?>
     <section class="text-center p-4">
-        <!-- Background image -->
         <div class="p-5 bg-image bg-fade-in rounded" style="
         background-image: url('./img/contact_img.jpg');
         height: 300px;
