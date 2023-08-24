@@ -12,13 +12,16 @@ require_once 'templates/navbar.php';
  */
 function createProductCard(array $row, int $index): string
 {
+    global $kategorieFarben;
+    $kategorie = $row["kategorie"];
+    $badgeFarbe = $kategorieFarben[$kategorie];
     return '
         <div class="col-md-3 mb-4 card-fade" style="display: none;" data-index="' . $index . '">
             <div class="card h-100">
                 <img src="data:image/jpeg;base64,' . base64_encode($row['bild']) . '" class="card-img-top mx-auto" style="height: 200px; width: 200px;" alt="' . $row["name"] . '">
                 <div class="card-body">
                     <h5 class="card-title">' . $row["name"] . '</h5>
-                    <p class="text-muted fw-light fs-6">' . $row["kategorie"] . '</p>
+                    <a><span class="badge me-1" style="background-color: ' . $badgeFarbe . ';">' . $row["kategorie"] . '</span></a>
                     <p class="card-text fst-italic">' . $row["beschreibung"] . '</p>
                     <p class="card-text font-monospace">' . $row["preis"] . ' € pro Packung</p>
                     <a href="produkt.php?id=' . $row["produkt_id"] . '" class="btn btn-success">Details <i class="fa-solid fa-angles-right"></i></a>
@@ -28,6 +31,23 @@ function createProductCard(array $row, int $index): string
     ';
 }
 
+$kategorieFarben = array(
+    "Obst" => "#FF5733",
+    "Gemüse" => "#4CAF50",
+    "Proteine" => "#FFC300",
+    "Milchprodukte" => "#FF6B8A",
+    "Backwaren" => "#A569BD",
+    "Frühstück" => "#48C9B0",
+    "Grundnahrungsmittel" => "#FF5733",
+    "Fisch" => "#3498DB",
+    "Süßigkeiten" => "#E74C3C",
+    "Getränke" => "#58D68D",
+    "Brotaufstriche" => "#F7DC6F",
+    "Soßen" => "#AF7AC5",
+    "Öle" => "#45B39D",
+    "Süßungsmittel" => "#F1948A",
+    "Würzmittel" => "#D5DBDB"
+);
 $index = 0;
 ?>
 
@@ -61,6 +81,7 @@ $index = 0;
                             <option value="Brotaufstriche">Brotaufstriche</option>
                             <option value="Soßen">Soßen</option>
                             <option value="Öle">Öle</option>
+                            <option value="Süßungsmittel">Süßungsmittel</option>
                             <option value="Würzmittel">Würzmittel</option>
                         </select>
                         <button type="submit" class="btn btn-success">Filtern <i class="fa-solid fa-arrow-down-short-wide"></i></button>
