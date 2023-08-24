@@ -44,7 +44,6 @@ if ($bestellungenResult->num_rows > 0) : ?>
                     Bestellung #<?= $bestellungs_id; ?> am <?= date('d.m.Y', strtotime($bestellungsDatum)); ?>
                 </button>
             </h2>
-
             <div id="<?= $collapseId; ?>" class="accordion-collapse collapse" aria-labelledby="heading-<?= $bestellungs_id; ?>" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body d-flex justify-content-center align-items-center">
                     <div class="container py-5 h-100" style="width:60em;">
