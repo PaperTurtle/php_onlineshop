@@ -72,6 +72,24 @@ if (isset($_GET["id"]) && ctype_digit($_GET["id"])) {
     header("Location: produkte.php");
     exit();
 }
+
+$kategorieFarben = array(
+    "Obst" => "#FF5733",
+    "Gemüse" => "#4CAF50",
+    "Proteine" => "#FFC300",
+    "Milchprodukte" => "#FF6B8A",
+    "Backwaren" => "#A569BD",
+    "Frühstück" => "#48C9B0",
+    "Grundnahrungsmittel" => "#FF5733",
+    "Fisch" => "#3498DB",
+    "Süßigkeiten" => "#E74C3C",
+    "Getränke" => "#58D68D",
+    "Brotaufstriche" => "#F7DC6F",
+    "Soßen" => "#AF7AC5",
+    "Öle" => "#45B39D",
+    "Süßungsmittel" => "#F1948A",
+    "Würzmittel" => "#D5DBDB"
+);
 ob_end_flush();
 ?>
 <main class="mt-10 mb-10 pt-4">
@@ -88,7 +106,11 @@ ob_end_flush();
                 <div class="p-4">
                     <h1><?= $row["name"]; ?></h1>
                     <div class="mb-3">
-                        <a><span class="badge bg-primary me-1"><?= $row["kategorie"]; ?></span></a>
+                        <?php
+                        $kategorie = $row["kategorie"];
+                        $badgeFarbe = $kategorieFarben[$kategorie];
+                        ?>
+                        <a><span class="badge me-1" style="background-color: <?= $badgeFarbe; ?>;"><?= $row["kategorie"]; ?></span></a>
                     </div>
                     <p class="lead mb-4 font-monospace"><span><?= $row["preis"]; ?> €</span></p>
                     <p class="mb-7"><?= $row["beschreibung"]; ?></p>
