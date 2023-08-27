@@ -144,8 +144,9 @@ if (isset($_POST["reset-password-submit"])) {
                                         <p class="card-text py-2">
                                             Gib dein neues Passwort ein.
                                         </p>
-                                        <div class="form-outline mb-5">
-                                            <input type="password" id="password" name="password" class="form-control my-3" required />
+                                        <div class="form-outline input-group mb-5">
+                                            <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-key fa-sm"></i></span>
+                                            <input type="password" id="password" name="password" class="form-control" required />
                                             <label class="form-label" for="password">Passwort</label>
                                             <div class="invalid-feedback">
                                             </div>

@@ -161,8 +161,9 @@ if (isset($_POST['send_reset_email'])) {
                                     Gib deine E-Mail-Adresse ein, und wir senden dir eine E-Mail mit Anweisungen zum Zurücksetzen deines Passworts.
                                 </p>
                                 <input type="hidden" name="token" value="<?= $_SESSION["csrf_token"] ?>">
-                                <div class="form-outline mb-5">
-                                    <input type="email" id="typeEmail" name="email" class="form-control my-3" required />
+                                <div class="form-outline input-group mb-4">
+                                    <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-envelope fa-sm"></i></span>
+                                    <input type="email" id="typeEmail" name="email" class="form-control" required />
                                     <label class="form-label" for="typeEmail">Email</label>
                                     <div class="invalid-feedback">
                                         Bitte gib deine Email ein!

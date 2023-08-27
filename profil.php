@@ -161,7 +161,7 @@ ob_end_flush();
                   <p class="mb-0">Email</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0"><?= $email; ?></p>
+                  <p class="text-muted mb-0"><?= htmlspecialchars($email); ?></p>
                 </div>
               </div>
               <hr>
@@ -332,24 +332,36 @@ ob_end_flush();
               <input type="hidden" name="token" value="<?= $_SESSION["csrf_token"] ?>">
               <div class="modal-body">
                 <div class="form-outline input-group mb-4">
-                  <span class="input-group-text" id="inputGroupPrepend">@</span>
+                  <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-at fa-sm"></i></span>
                   <input type="text" name="benutzername" id="benutzername" class="form-control" value="<?= $benutzername; ?>" required>
-                  <label for="benutzername" class="form-label" aria-describedby="inputGroupPrepend">Benutzername:</label>
+                  <label for="benutzername" class="form-label" aria-describedby="inputGroupPrepend">Benutzername</label>
                   <div class="invalid-feedback">
-                    Bitte gib einen Benutzernamen ein!
+                    Bitte gib einen neuen Benutzernamen ein!
                   </div>
                 </div>
-                <div class="form-outline mb-4">
+                <div class="form-outline input-group mb-4">
+                  <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-envelope fa-sm"></i></span>
                   <input type="email" name="email" class="form-control" value="<?= $email; ?>" required>
-                  <label for="email" class="form-label">E-Mail:</label>
+                  <label for="email" class="form-label">E-Mail</label>
+                  <div class="invalid-feedback">
+                    Bitte gib deine neue Email ein!
+                  </div>
                 </div>
-                <div class="form-outline mb-4">
+                <div class="form-outline input-group mb-4">
+                  <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-user"></i></span>
                   <input type="text" name="vorname" class="form-control" value="<?= $vorname; ?>" required>
-                  <label for="vorname" class="form-label">Vorname:</label>
+                  <label for="vorname" class="form-label">Vorname</label>
+                  <div class="invalid-feedback">
+                    Bitte gib deinen Namen ein!
+                  </div>
                 </div>
-                <div class="form-outline mb-4">
+                <div class="form-outline input-group mb-4">
+                  <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-user"></i></span>
                   <input type="text" name="nachname" class="form-control" value="<?= $nachname; ?>" required>
-                  <label for="nachname" class="form-label">Nachname:</label>
+                  <label for="nachname" class="form-label">Nachname</label>
+                  <div class="invalid-feedback">
+                    Bitte gib deinen Nachnamen ein!
+                  </div>
                 </div>
               </div>
               <div class="modal-footer">

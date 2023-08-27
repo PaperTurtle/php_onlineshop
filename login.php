@@ -105,15 +105,16 @@ ob_end_flush();
                                         </div>
                                         <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Anmeldung</h5>
                                         <div class="form-outline input-group mb-4">
-                                            <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                            <input type="text" name="username" class="form-control" id="floatingUsername" required aria-describedby="inputGroupPrepend">
+                                            <span class="input-group-text" id="inputGroupAt"><i class="fa-solid fa-at fa-sm"></i></span>
+                                            <input type="text" name="username" class="form-control" id="floatingUsername" required aria-describedby="inputGroupAt">
                                             <label for="floatingUsername" class="form-label">Benutzername</label>
                                             <div class="invalid-feedback">
                                                 Bitte gib einen Benutzernamen ein!
                                             </div>
                                         </div>
-                                        <div class="form-outline mb-4">
-                                            <input type="password" name="password" class="form-control" id="floatingPassword" required>
+                                        <div class="form-outline input-group mb-4">
+                                            <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-key fa-sm"></i></span>
+                                            <input type="password" name="password" class="form-control" id="floatingPassword" required aria-describedby="inputGroupPrepend">
                                             <label for="floatingPassword" class="form-label">Passwort</label>
                                             <div class="invalid-feedback">
                                                 Bitte gib ein Passwort ein!

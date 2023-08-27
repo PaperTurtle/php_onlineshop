@@ -1,7 +1,5 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+session_start();
 
 require_once 'templates/head.php';
 require_once 'templates/navbar.php';
@@ -96,35 +94,39 @@ $conn->close();
                                         </div>
                                         <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Registrierung</h5>
                                         <div class="form-outline input-group mb-4">
-                                            <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                            <span class="input-group-text" id="inputGroupAt"><i class="fa-solid fa-at fa-sm"></i></span>
                                             <input type="text" name="username" class="form-control" id="floatingUsername" required aria-describedby="inputGroupPrepend">
                                             <label for="floatingUsername" class="form-label">Benutzername</label>
                                             <div class="invalid-feedback">
                                                 Bitte gib einen Benutzernamen ein!
                                             </div>
                                         </div>
-                                        <div class="form-outline mb-4">
+                                        <div class="form-outline mb-4 input-group">
+                                            <span class="input-group-text" id="inputGroupAt"><i class="fa-solid fa-user"></i></span>
                                             <input type="text" name="vorname" class="form-control" id="floatingVorname" required>
                                             <label for="floatingVorname" class="form-label">Vorname</label>
                                             <div class="invalid-feedback">
                                                 Bitte gib deinen Vornamen ein!
                                             </div>
                                         </div>
-                                        <div class="form-outline mb-4">
+                                        <div class="form-outline mb-4 input-group">
+                                            <span class="input-group-text" id="inputGroupAt"><i class="fa-solid fa-user"></i></span>
                                             <input type="text" name="nachname" class="form-control" id="floatingNachname" required>
                                             <label for="floatingNachname" class="form-label">Nachname</label>
                                             <div class="invalid-feedback">
                                                 Bitte gib deinen Nachnamen ein!
                                             </div>
                                         </div>
-                                        <div class="form-outline mb-4">
+                                        <div class="form-outline mb-4 input-group">
+                                            <span class="input-group-text" id="inputGroupAt"><i class="fa-solid fa-envelope fa-sm"></i></span>
                                             <input type="email" name="email" class="form-control" id="floatingEmail" required>
                                             <label for="floatingEmail" class="form-label">E-Mail</label>
                                             <div class="invalid-feedback">
                                                 Bitte gib deine Email ein!
                                             </div>
                                         </div>
-                                        <div class="form-outline mb-4">
+                                        <div class="form-outline mb-4 input-group">
+                                            <span class="input-group-text" id="inputGroupAt"><i class="fa-solid fa-key fa-sm"></i></span>
                                             <input type="password" name="password" class="form-control" id="floatingPassword" required>
                                             <label for="floatingPassword" class="form-label">Passwort</label>
                                             <div class="invalid-feedback">

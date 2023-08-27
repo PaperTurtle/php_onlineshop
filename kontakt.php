@@ -72,13 +72,11 @@ getFullUserData();
     <section class="text-center p-4">
         <div class="p-5 bg-image bg-fade-in rounded" style="
         background-image: url('./img/contact_img.jpg');
-        height: 300px;
-        "></div>
+        height: 300px;"></div>
         <div class="card mx-4 mx-md-5 shadow-5-strong" style="
         margin-top: -100px;
         background: hsla(0, 0%, 100%, 0.8);
-        backdrop-filter: blur(30px);
-        ">
+        backdrop-filter: blur(30px);">
             <div class="card-body py-5 px-md-5">
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-8">
@@ -86,7 +84,8 @@ getFullUserData();
                         <form action="kontakt.php" method="POST" class="needs-validation g-3" novalidate>
                             <div class="row">
                                 <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
+                                    <div class="form-outline input-group">
+                                        <span class="input-group-text" id="inputGroupAt"><i class="fa-solid fa-user fa-sm"></i></span>
                                         <input type="text" id="name" name="name" class="form-control" value="<?= $global_fullName; ?>" required>
                                         <label class="form-label" for="name">Name</label>
                                         <div class="invalid-feedback">
@@ -95,7 +94,8 @@ getFullUserData();
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
+                                    <div class="form-outline input-group">
+                                        <span class="input-group-text" id="inputGroupAt"><i class="fa-solid fa-envelope fa-sm"></i></span>
                                         <input type="email" id="email" name="email" class="form-control" value="<?= $global_email; ?>" required>
                                         <label class="form-label" for="email">E-Mail</label>
                                         <div class="invalid-feedback">
@@ -111,7 +111,9 @@ getFullUserData();
                                 </div>
                             </div>
                             <div class="pt-1 mb-4">
-                                <button name="kontakt" type="submit" class="btn btn-dark btn-lg">Absenden <i class="fa-solid fa-check"></i></button>
+                                <button name="kontakt" type="submit" class="btn btn-dark btn-lg">Absenden
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
                             </div>
                         </form>
                     </div>
