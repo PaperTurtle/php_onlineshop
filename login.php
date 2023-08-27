@@ -33,20 +33,20 @@ if (isset($_POST['login'])) {
 
     // Vorbereiten der SELECT-Anweisung, um den Benutzer aus der Datenbank abzurufen
     $selectQuery = "SELECT benutzer_id, passwort, vorname FROM benutzer WHERE username = ?";
-    $stmt        = $conn->prepare($selectQuery);
+    $stmt = $conn->prepare($selectQuery);
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result->num_rows == 1) {
-        $row            = $result->fetch_assoc();
+        $row = $result->fetch_assoc();
         $hashedPassword = $row['passwort'];
 
         // Überprüfen, ob das eingegebene Passwort mit dem gehashten Passwort in der Datenbank übereinstimmt
         if (password_verify($password, $hashedPassword)) {
             // Anmeldung erfolgreich
-            $_SESSION['username']    = $username;
-            $_SESSION['benutzer_id'] = $row['benutzer_id'];
+            $_SESSION['username']         = $username;
+            $_SESSION['benutzer_id']      = $row['benutzer_id'];
             $_SESSION["benutzer_vorname"] = $row["vorname"];
 
             // Schließen des vorbereiteten Statements
@@ -54,6 +54,17 @@ if (isset($_POST['login'])) {
 
             // Schließen der Datenbankverbindung
             $conn->close();
+
+            // Setzen der Session-Cookie-Parameter
+            session_set_cookie_params([
+                'lifetime' => 0,
+                'samesite' => 'strict',
+                'httponly' => true,
+                'secure' => true,
+            ]);
+
+            // Regenerieren der Session-ID, um Session Fixation zu verhindern
+            session_regenerate_id();
 
             // Weiterleitung zur Startseite oder einer anderen passenden Seite
             if (isset($_SESSION['redirect_url'])) {
