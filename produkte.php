@@ -21,7 +21,7 @@ function createProductCard(array $row, int $index): string
                 <img src="data:image/jpeg;base64,' . base64_encode($row['bild']) . '" class="card-img-top mx-auto" style="height: 200px; width: 200px;" alt="' . $row["name"] . '">
                 <div class="card-body">
                     <h5 class="card-title">' . $row["name"] . '</h5>
-                    <a><span class="badge me-1" style="background-color: ' . $badgeFarbe . ';">' . $row["kategorie"] . '</span></a>
+                    <a><span class="badge mb-2" style="background-color: ' . $badgeFarbe . ';">' . $row["kategorie"] . '</span></a>
                     <p class="card-text fst-italic">' . $row["beschreibung"] . '</p>
                     <p class="card-text font-monospace">' . $row["preis"] . ' € pro Packung</p>
                     <a href="produkt.php?id=' . $row["produkt_id"] . '" class="btn btn-success">Details <i class="fa-solid fa-angles-right"></i></a>
