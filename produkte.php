@@ -52,6 +52,10 @@ $index = 0;
 ?>
 
 <main background-color="eee" class="min-vh-100">
+    <?php
+    require_once "templates/messageBlock.php";
+    showMessageFromSession(type: "warning", icon: "exclamation-triangle-fill", sessionKey: "invalid_product_id");
+    ?>
     <div class="container-fluid p-3">
         <form action="" method="GET" class="search-form mt-4 mb-6">
             <div class="row justify-content-md-start">
