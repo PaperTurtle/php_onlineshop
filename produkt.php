@@ -13,9 +13,8 @@ if (!isset($_SESSION['benutzer_id'])) {
 }
 
 if (isset($_GET["id"]) && ctype_digit($_GET["id"])) {
-    $produkt_id = $_GET["id"];
-
     require_once 'templates/connect.php';
+    $produkt_id = $_GET["id"];
 
     // Produkt aus der Datenbank abrufen (als Prepared Statement)
     $selectQuery = "SELECT * FROM produkte WHERE produkt_id = ?";
@@ -31,6 +30,7 @@ if (isset($_GET["id"]) && ctype_digit($_GET["id"])) {
         // Produkt nicht gefunden -> Weiterleitung zur Produktübersichtsseite
         $stmt->close();
         $conn->close();
+        $_SESSION["invalid_product_id"] = "Das Produkt mit der ID $produkt_id existiert nicht.";
         header("Location: produkte.php");
         exit();
     }
