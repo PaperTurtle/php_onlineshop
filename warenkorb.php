@@ -77,6 +77,17 @@ function removeFromCart(mysqli $conn, int $userId, int $productId): void
     header("Location: warenkorb.php");
 }
 
+/**
+ * Formatiert einen Preis
+ * 
+ * @param float $price Preis
+ * @return string Formatiertes Preis
+ */
+function formatPrice(float $price): string
+{
+    return number_format($price, 2, '.', '');
+}
+
 if (!isset($_SESSION['benutzer_id'])) {
     $_SESSION["not_logged_in"] = true;
     $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
@@ -143,7 +154,7 @@ ob_end_flush();
                                             $row = $result->fetch_assoc();
                                             $name = $row['name'];
                                             $preis = $row['preis'];
-                                            $gesamtpreis = number_format($preis * $menge, 2, '.', '');
+                                            $gesamtpreis = formatPrice(price: $preis);
                                             $bild = $row['bild'];
                                         }
                                         $total_preis += $gesamtpreis;
@@ -193,7 +204,7 @@ ob_end_flush();
                                                 <hr class="my-4">
                                                 <div class="d-flex justify-content-between">
                                                     <p class="mb-2">Zwischensumme</p>
-                                                    <p class="mb-2 font-monospace"><?= number_format($total_preis, 2, '.', ''); ?> €</p>
+                                                    <p class="mb-2 font-monospace"><?= formatPrice(price: $total_preis); ?> €</p>
                                                 </div>
                                                 <div class="d-flex justify-content-between">
                                                     <p class="mb-2">Shipping</p>
@@ -201,12 +212,16 @@ ob_end_flush();
                                                 </div>
                                                 <div class="d-flex justify-content-between mb-4">
                                                     <p class="mb-2">Gesamtpreis</p>
-                                                    <p class="mb-2 font-monospace"><?= number_format($total_preis + 10.00, 2, '.', ''); ?> €</p>
+                                                    <p class="mb-2 font-monospace"><?= formatPrice(price: $total_preis + 10.00); ?> €</p>
                                                 </div>
                                                 <a href="bestellung_abschliessen.php" class="btn btn-light btn-block btn-lg">
                                                     <div class="d-flex justify-content-between">
-                                                        <span class="font-monospace fw-bold"><?= number_format($total_preis + 10.00, 2, '.', ''); ?> €</span>
-                                                        <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                                                        <span class="font-monospace fw-bold">
+                                                            <?= formatPrice(price: $total_preis + 10.00); ?> €
+                                                        </span>
+                                                        <span>Checkout
+                                                            <i class="fas fa-long-arrow-alt-right ms-2"></i>
+                                                        </span>
                                                     </div>
                                                 </a>
                                             </div>
