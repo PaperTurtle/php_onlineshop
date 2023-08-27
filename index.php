@@ -1,10 +1,4 @@
 <?php
-session_set_cookie_params([
-	'lifetime' => 0,
-	'samesite' => 'strict',
-	'httponly' => true,
-	'secure' => true,
-]);
 session_start();
 require_once 'templates/connect.php';
 require_once "templates/userData.php";
@@ -92,7 +86,6 @@ if ($totalMenge > 0) {
 		<main class="px-3">
 			<h1 class="text-center text-light position-relative z-index-above display-3">
 				<?php
-				getFullUserData();
 				if (isset($_SESSION["benutzer_id"])) { ?>
 					<strong>Willkommen zurück, <?= htmlspecialchars($global_vorname) ?></strong>
 				<?php } else { ?>
@@ -111,7 +104,7 @@ if ($totalMenge > 0) {
 			<i class="fa-solid fa-angles-up"></i>
 		</button>
 		<footer class="mt-auto text-white-50">
-			<p>&copy; <?= date("Y"); ?> Geschmacksgarten-Onlineshop, <span data-bs-toggle="tooltip" data-bs-placement="top" title=<?= "Yoooooo" ?>>Seweryn Czabanowski</span></p>
+			<p>&copy; <?= date("Y"); ?> Geschmacksgarten-Onlineshop, <span data-bs-toggle="tooltip" data-bs-placement="top" title="Yoooooo">Seweryn Czabanowski</span></p>
 		</footer>
 	</div>
 	<script type="text/javascript" src="./js/mdb.min.js"></script>
