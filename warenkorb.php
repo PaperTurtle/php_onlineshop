@@ -135,7 +135,7 @@ ob_end_flush();
                     <div class="card">
                         <div class="card-body p-4">
                             <div class="row">
-                                <div class="col-lg-7" id="shoppingCartContainer" style="display:none">
+                                <div class="col-lg-7" id="shoppingCartContainer" style="display:none; max-height: 460px; overflow-y: auto;">
                                     <h5 class="mb-3"><a href="produkte.php" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Weiter einkaufen</a></h5>
                                     <hr>
                                     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -188,7 +188,7 @@ ob_end_flush();
                                     <?php endforeach; ?>
                                 </div>
                                 <?php if (!empty($_SESSION['warenkorb'])) : ?>
-                                    <div class="col-lg-5" id="bestellungDetails" style="display:none">
+                                    <div class="col-lg-5" id="bestellungDetails" style="display:none;">
                                         <div class="card bg-primary text-white rounded-3">
                                             <div class="card-body">
                                                 <div class="d-flex justify-content-between align-items-center mb-4">
