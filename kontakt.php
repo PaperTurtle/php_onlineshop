@@ -12,7 +12,6 @@ getFullUserData();
 
 <main class="vh-50">
     <?php
-
     require_once "templates/messageBlock.php";
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $name = $_POST['name'] ?? $fullName;
