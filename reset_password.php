@@ -149,6 +149,7 @@ if (isset($_POST["reset-password-submit"])) {
                                             <input type="password" id="password" name="password" class="form-control" required />
                                             <label class="form-label" for="password">Passwort</label>
                                             <div class="invalid-feedback">
+                                                Bitte gib dein Passwort ein.
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-dark w-100" name="reset-password-submit">Reset</button>
