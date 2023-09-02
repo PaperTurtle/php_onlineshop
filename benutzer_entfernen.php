@@ -29,13 +29,6 @@ require_once "templates/connect.php";
 
 try {
     // Überprüfen, ob der Benutzer derzeit auf der Seite "benutzer_entfernen.php" ist
-    $currentURL = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-    $targetURL = "http://localhost/Garten_2/benutzer_entfernen.php";
-    if ($currentURL === $targetURL) {
-        $_SESSION["user_restricted_delete"] = true;
-        header("Location: profil.php");
-        exit();
-    }
     $conn->begin_transaction();
 
     // Lösche Benutzer aus der Tabelle "benutzer"
@@ -47,7 +40,9 @@ try {
 
     session_unset();
     session_destroy();
+
     // Leite zur Startseite weiter
+    session_start();
     $_SESSION["user_delete_success"] = "Dein Benutzerkonto wurde erfolgreich gelöscht!";
     header("Location: index.php");
     exit();
