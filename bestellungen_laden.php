@@ -114,7 +114,9 @@ if ($bestellungenResult->num_rows > 0) : ?>
         </div>
     <?php endwhile; ?>
 <?php else : ?>
-    <h2 id="keineBestellungenHeadingMehr" class="small text-muted mb-1">Keine weiteren Bestellungen gefunden.</h2>
+    <h2 id="keineBestellungenHeadingMehr" class="small text-muted mb-1">Keine weiteren Bestellungen gefunden.
+        <i class="fa-solid fa-crow"></i>
+    </h2>
     <script>
         $(document).ready(function() {
             const loadButton = $('#load_more');
