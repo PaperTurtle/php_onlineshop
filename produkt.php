@@ -119,7 +119,7 @@ ob_end_flush();
                             <input type="number" name="menge" value="1" min="1" class="form-control">
                             <label for="menge" class="form-label">Menge:</label>
                         </div>
-                        <button class="btn btn-primary ms-1" type="submit" data-bs-toggle="modal" data-bs-target="#modalWindow">
+                        <button class="btn btn-success ms-1" type="submit" data-bs-toggle="modal" data-bs-target="#modalWindow">
                             Zum Warenkorb hinzufügen
                             <i class="fas fa-shopping-cart ms-1"></i>
                         </button>
