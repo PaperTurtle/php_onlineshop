@@ -137,7 +137,7 @@ ob_end_flush();
                                         <a class="small text-muted" href="forgot_password.php">Passwort vergessen?</a>
                                         <div class="d-flex align-items-center justify-content-center pb-4">
                                             <p class="mb-0 me-2">Noch kein Profil?</p>
-                                            <a href="register.php" class="btn btn-outline-dark">Registriere dich</a>
+                                            <a href="register.php" class="btn btn-outline-dark">Registriere dich jetzt</a>
                                         </div>
                                     </form>
                                 </div>
