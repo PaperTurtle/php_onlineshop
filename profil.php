@@ -60,9 +60,9 @@ if (isset($_SESSION["benutzer_id"])) {
     }
 
     $neuerBenutzername = $_POST['benutzername'];
-    $neueEmail = $_POST['email'];
-    $neuerVorname = $_POST['vorname'];
-    $neuerNachname = $_POST['nachname'];
+    $neueEmail = strtolower($_POST['email']);
+    $neuerVorname = ucfirst(strtolower($_POST['vorname']));
+    $neuerNachname = ucfirst(strtolower($_POST['nachname']));
 
     updateUser($conn, $benutzer_id, $neuerBenutzername, $neueEmail, $neuerVorname, $neuerNachname);
 
@@ -259,7 +259,9 @@ ob_end_flush();
                                                   <p class="font-monospace">10.00 €</p>
                                                 </div>
                                               <?php else : ?>
-                                                <li class="list-group-item">Keine bestellten Artikel gefunden.</li>
+                                                <li class="list-group-item">Keine bestellten Artikel gefunden.
+                                                  <i class="fa-solid fa-crow"></i>
+                                                </li>
                                               <?php endif; ?>
                                             </div>
                                           </div>
@@ -278,7 +280,9 @@ ob_end_flush();
                           </div>
                         <?php endwhile; ?>
                       <?php else : ?>
-                        <h2 id="keineBestellungenHeading" class="small text-muted mb-1">Keine Bestellungen gefunden.</h2>
+                        <h2 id="keineBestellungenHeading" class="small text-muted mb-1">Keine Bestellungen gefunden.
+                          <i class="fa-solid fa-crow"></i>
+                        </h2>
                         <script>
                           $(document).ready(function() {
                             const loadButton = $('#load_more');
@@ -315,7 +319,7 @@ ob_end_flush();
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen <i class="fa-solid fa-times-circle"></i></button>
-              <a href="benutzer_entfernen.php" class="btn btn-danger">Konto löschen <i class="fa-solid fa-trash"></i></a>
+              <button class="btn btn-danger" onclick="window.location.href='benutzer_entfernen.php'">Konto löschen <i class="fa-solid fa-trash"></i></button>
             </div>
           </div>
         </div>
