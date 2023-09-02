@@ -22,10 +22,10 @@ require_once 'templates/connect.php';
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['register'])) {
     // Benutzerdaten aus dem Formular lesen und filtern
     $username = htmlspecialchars($_POST['username']);
-    $vorname = htmlspecialchars($_POST['vorname']);
-    $nachname = htmlspecialchars($_POST['nachname']);
+    $vorname = ucfirst(strtolower(htmlspecialchars($_POST['vorname'])));
+    $nachname = ucfirst(strtolower(htmlspecialchars($_POST['nachname'])));
     $password = htmlspecialchars($_POST['password']);
-    $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+    $email = strtolower(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));
 
     // Überprüfen, ob der Benutzername bereits existiert
     $checkQueryUsername = "SELECT * FROM benutzer WHERE username = ?";
