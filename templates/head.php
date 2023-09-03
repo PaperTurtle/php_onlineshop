@@ -14,8 +14,6 @@
     <link rel="stylesheet" href="./css/button.css" />
     <link rel="stylesheet" href="./css/flash.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-
     <!-- Google Fonts and JavaScript Dependencies -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
     <script src="https://kit.fontawesome.com/9997128989.js" crossorigin="anonymous" async defer></script>
@@ -33,3 +31,4 @@
     <button id="back-to-top-btn">
         <i class="fa-solid fa-angles-up"></i>
     </button>
+    <?php require_once 'navbar.php'; ?>
