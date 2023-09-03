@@ -11,10 +11,7 @@ if (isset($_SESSION["username"])) {
 } else {
 	$totalMenge = 0;
 }
-$badgeHTML = '';
-if ($totalMenge > 0) {
-	$badgeHTML = '<span class="badge rounded-pill badge-notification bg-danger">' . $totalMenge . '</span>';
-}
+$badgeHTML = ($totalMenge > 0) ? '<span class="badge rounded-pill badge-notification bg-danger">' . $totalMenge . '</span>' : '';
 ?>
 <!DOCTYPE html>
 <html lang="en">
