@@ -2,7 +2,6 @@
 ob_start();
 session_start();
 require_once 'templates/head.php';
-require_once 'templates/navbar.php';
 require_once 'templates/connect.php';
 require_once 'templates/userData.php';
 

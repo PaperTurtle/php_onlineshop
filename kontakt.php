@@ -5,7 +5,6 @@ use PHPMailer\PHPMailer\Exception;
 
 session_start();
 require_once 'templates/head.php';
-require_once 'templates/navbar.php';
 require_once 'templates/userData.php';
 getFullUserData();
 ?>

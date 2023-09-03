@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once 'templates/head.php';
-require_once 'templates/navbar.php';
 
 /**
  * Erstellt eine Bootstrap-Karte für ein Produkt und gibt sie als HTML-Code zurück

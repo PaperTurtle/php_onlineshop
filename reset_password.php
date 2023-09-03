@@ -2,7 +2,6 @@
 
 session_start();
 require_once 'templates/head.php';
-require_once 'templates/navbar.php';
 
 /**
  * Weiterleitung mit Fehlermeldung

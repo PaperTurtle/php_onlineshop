@@ -2,7 +2,6 @@
 ob_start();
 session_start();
 require_once 'templates/head.php';
-require_once 'templates/navbar.php';
 
 // Überprüfen, ob der Benutzer bereits angemeldet ist
 if (!isset($_SESSION['benutzer_id'])) {
