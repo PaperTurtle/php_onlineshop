@@ -44,8 +44,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['register'])) {
     if ($checkResultUser->num_rows > 0) {
         // Benutzername bereits vergeben
         $_SESSION["register_error"] = "Der Benutzername ist bereits vergeben. Bitte wähle einen anderen Benutzernamen.";
+        return;
     } else if ($checkResultEmail->num_rows > 0) {
         $_SESSION["register_error"] = "Die Email ist bereits vergeben. Bitte wähle eine andere Email.";
+        return;
     } else {
         // Benutzer in die Datenbank einfügen
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Passwort hashen
@@ -63,6 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['register'])) {
         } else {
             // Fehler beim Einfügen in die Datenbank
             $_SESSION["register_error"] = "Fehler beim Speichern der Benutzerdaten. Bitte versuche es erneut.";
+            return;
         }
     }
 }
