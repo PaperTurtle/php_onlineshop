@@ -146,17 +146,16 @@ ob_end_flush();
                                     $gesamtpreis = 0;
                                     foreach ($_SESSION['warenkorb'] as $produkt_id => $menge) : ?>
                                         <?php
-                                        // Produkt aus der Datenbank laden
                                         $produktQuery = "SELECT * FROM produkte WHERE produkt_id = $produkt_id";
                                         $result = $conn->query($produktQuery);
                                         if ($result->num_rows > 0) {
                                             $row = $result->fetch_assoc();
                                             $name = $row['name'];
                                             $preis = $row['preis'];
-                                            $gesamtpreis = formatPrice(price: $preis);
+                                            $gesamtpreis_produkt = $preis * $menge;
                                             $bild = $row['bild'];
+                                            $total_preis += $gesamtpreis_produkt;
                                         }
-                                        $total_preis += $gesamtpreis;
                                         ?>
                                         <div class="card mb-3 card-fade" style="display: none;" data-index="<?= $index ?>">
                                             <div class=" card-body">
@@ -174,7 +173,7 @@ ob_end_flush();
                                                     </div>
                                                     <div class="d-flex flex-row align-items-center">
                                                         <div style="width: 80px;">
-                                                            <h5 class="mb-0 font-monospace"><?= $gesamtpreis; ?>€</h5>
+                                                            <h5 class="mb-0 font-monospace"><?= $gesamtpreis_produkt; ?>€</h5>
                                                         </div>
                                                         <a href="warenkorb.php?remove=<?= $produkt_id; ?>" class="btn btn-danger btn-floating m-1 delete-button">
                                                             <i class="fas fa-trash-alt"></i>
