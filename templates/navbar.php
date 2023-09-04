@@ -22,6 +22,7 @@ if ($totalMenge > 0) {
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul class="navbar-nav">
                 <?php
+                $currentPage = $_SERVER['REQUEST_URI'];
                 $navItems = [
                     ['text' => 'Startseite', 'link' => 'index.php', 'icon' => 'fa-house'],
                     ['text' => 'Produkte', 'link' => 'produkte.php', 'icon' => 'fa-apple-whole'],
@@ -38,11 +39,12 @@ if ($totalMenge > 0) {
                     $navItems[] = ['text' => 'Registrieren', 'link' => 'register.php', 'icon' => 'fa-marker'];
                 }
                 foreach ($navItems as $item) {
-                    $activeClass = (basename($_SERVER['PHP_SELF']) == $item['link']) ? 'active fw-bold' : '';
+                    $activeClass = ($currentPage == $item['link']) ? 'active fw-bold' : '';
+                    $badgeHTML = ($item['text'] === 'Warenkorb') ? $badgeHTML : '';
                     echo '
                     <li class="nav-item">
                         <a class="nav-link ' . $activeClass . '" href="' . $item['link'] . '">' . $item['text'] . ' 
-                            <i class="fa-solid ' . $item['icon'] . '"></i>' . ($item['text'] === 'Warenkorb' ? $badgeHTML : '') . '
+                            <i class="fa-solid ' . $item['icon'] . '"></i>' . $badgeHTML . '
                         </a>
                     </li>';
                 }
