@@ -41,12 +41,8 @@ if (isset($_GET["id"]) && ctype_digit($_GET["id"])) {
 
         // Check if the quantity is 1 or above
         if ($menge >= 1) {
-            // Warenkorb in der Session speichern
-            if (isset($_SESSION['warenkorb'][$produkt_id])) {
-                $_SESSION['warenkorb'][$produkt_id] += $menge;
-            } else {
-                $_SESSION['warenkorb'][$produkt_id] = $menge;
-            }
+            // Produkt zum Warenkorb hinzufügen, falls es noch nicht existiert, sonst Menge aktualisieren
+            $_SESSION['warenkorb'][$produkt_id] = ($_SESSION['warenkorb'][$produkt_id] ?? 0) + $menge;
 
             // Warenkorb in der Datenbank speichern oder aktualisieren (als Prepared Statement)
             $benutzer_id = $_SESSION['benutzer_id'];
@@ -94,7 +90,7 @@ ob_end_flush();
 <main class="mt-10 mb-10 pt-4">
     <?php
     require_once "templates/messageBlock.php";
-    showMessageFromSession(type: "danger", icon: "exclamation-circle-fill", sessionKey: "quantity_error");
+    showMessageFromSession(type: "danger", icon: "exclamation-triangle-fill", sessionKey: "quantity_error");
     ?>
     <div class="container mt-5">
         <div class="row">
