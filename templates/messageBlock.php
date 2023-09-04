@@ -35,12 +35,12 @@ function generateMessageBlock(string $type, string $icon, string $message): void
  */
 function showMessageFromSession(string $type, string $icon, ?string $sessionKey = null, ?string $message = null): void
 {
-    if ($message !== null && isset($_SESSION[$sessionKey])) {
+    if (!empty($message) && isset($_SESSION[$sessionKey])) {
         generateMessageBlock($type, $icon, $message);
         unset($_SESSION[$sessionKey]);
         return;
     }
-    if ($sessionKey !== null && isset($_SESSION[$sessionKey])) {
+    if (!empty($sessionKey) && isset($_SESSION[$sessionKey])) {
         generateMessageBlock($type, $icon, $_SESSION[$sessionKey]);
         unset($_SESSION[$sessionKey]);
         return;
