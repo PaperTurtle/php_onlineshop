@@ -1,9 +1,9 @@
 <?php
 ob_start();
 session_start();
-require_once 'templates/head.php';
-require_once 'templates/connect.php';
-require_once 'templates/userData.php';
+include 'templates/head.php';
+include 'templates/connect.php';
+include 'templates/userData.php';
 
 // Überprüfen, ob der Benutzer bereits angemeldet ist
 if (!isset($_SESSION['benutzer_id'])) {
@@ -238,8 +238,7 @@ ob_end_flush();
                                                   // Produkt Daten
                                                   $produktName = $produkt['name'];
                                                   $gesamtPreis = number_format($menge * $einzelpreis, 2);
-                                                  $preisAlleProdukte .= $gesamtPreis;
-                                                  $preisAlleProdukteFormatted = number_format($preisAlleProdukte + 10, 2, '.', '');
+                                                  $preisAlleProdukte += $gesamtPreis;
                                                   ?>
                                                   <div class="col-md-6 col-lg-6">
                                                     <p> <?= $produktName; ?></p>
@@ -258,15 +257,13 @@ ob_end_flush();
                                                   <p class="font-monospace">10.00 €</p>
                                                 </div>
                                               <?php else : ?>
-                                                <li class="list-group-item">Keine bestellten Artikel gefunden.
-                                                  <i class="fa-solid fa-crow"></i>
-                                                </li>
+                                                <li class="list-group-item">Keine bestellten Artikel gefunden.</li>
                                               <?php endif; ?>
                                             </div>
                                           </div>
                                           <div class="row my-4">
                                             <div class="col-md-4 offset-md-8 col-lg-3 offset-lg-9">
-                                              <p class="lead fw-bold mb-0 font-monospace" style="color: #332D2D;"><?= $preisAlleProdukteFormatted ?> €</p>
+                                              <p class="lead fw-bold mb-0 font-monospace" style="color: #332D2D;"><?= $preisAlleProdukte + 10 ?> €</p>
                                             </div>
                                           </div>
                                         </div>
@@ -279,9 +276,7 @@ ob_end_flush();
                           </div>
                         <?php endwhile; ?>
                       <?php else : ?>
-                        <h2 id="keineBestellungenHeading" class="small text-muted mb-1">Keine Bestellungen gefunden.
-                          <i class="fa-solid fa-crow"></i>
-                        </h2>
+                        <h2 id="keineBestellungenHeading" class="small text-muted mb-1">Keine Bestellungen gefunden.</h2>
                         <script>
                           $(document).ready(function() {
                             const loadButton = $('#load_more');
