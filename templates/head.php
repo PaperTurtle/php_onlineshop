@@ -22,12 +22,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/minidenticons@4.2.0/minidenticons.min.js" crossorigin="anonymous" defer></script>
-    <script src="https://unpkg.com/htmx.org@1.9.6" defer></script>
     <!-- MDB CSS -->
     <link rel="stylesheet" href="./css/mdb.min.css" />
 </head>
 
-<body hx-boost="true">
+<body>
     <button id="back-to-top-btn">
         <i class="fa-solid fa-angles-up"></i>
     </button>

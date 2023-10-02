@@ -37,7 +37,6 @@ $badgeHTML = ($totalMenge > 0) ? '<span class="badge rounded-pill badge-notifica
 	<link rel="stylesheet" href="./css/home.css" />
 	<link rel="stylesheet" href="./css/flash.css">
 	<link rel="stylesheet" href="./css/mdb.min.css" />
-	<script src="https://unpkg.com/htmx.org@1.9.6"></script>
 </head>
 
 <body class="d-flex text-center text-dark bg-image">

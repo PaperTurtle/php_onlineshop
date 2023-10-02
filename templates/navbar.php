@@ -39,10 +39,9 @@ if ($totalMenge > 0) {
                 }
                 foreach ($navItems as $item) {
                     $activeClass = (basename($_SERVER['PHP_SELF']) == $item['link']) ? 'active fw-bold' : '';
-                    $hxBoostAttribute = ($item['text'] === 'Startseite') ? 'hx-boost="false"' : '';
                     echo '
                     <li class="nav-item">
-                        <a class="nav-link ' . $activeClass . '" href="' . $item['link'] . '" ' . $hxBoostAttribute . '>' . $item['text'] . ' 
+                        <a class="nav-link ' . $activeClass . '" href="' . $item['link'] . '">' . $item['text'] . ' 
                             <i class="fa-solid ' . $item['icon'] . '"></i>' . ($item['text'] === 'Warenkorb' ? $badgeHTML : '') . '
                         </a>
                     </li>';
